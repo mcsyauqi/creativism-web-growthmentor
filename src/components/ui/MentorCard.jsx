@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { Star, Clock, MessageCircle } from 'lucide-react';
+import { Star, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Badge from './Badge';
 import Button from './Button';
 
 export default function MentorCard({ mentor, featured = false }) {
@@ -19,73 +18,77 @@ export default function MentorCard({ mentor, featured = false }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      whileHover={{ y: -8, boxShadow: '0 25px 50px rgba(139, 92, 246, 0.15)' }}
-      transition={{ duration: 0.3 }}
       className={`
-        bg-white rounded-2xl overflow-hidden
-        border border-border-light
-        ${featured ? 'ring-2 ring-growth-purple' : ''}
+        bg-white rounded-2xl overflow-hidden shadow-sm border h-full
+        ${featured ? 'border-purple-300 ring-1 ring-purple-200' : 'border-gray-100'}
+        hover:shadow-lg transition-shadow duration-300
       `}
     >
       {featured && (
-        <div className="bg-growth-purple text-white text-center py-1 text-sm font-medium">
+        <div className="bg-purple-600 text-white text-center py-2 text-sm font-medium">
           Featured Mentor
         </div>
       )}
 
-      <div className="p-6">
-        <div className="flex items-start gap-4 mb-4">
+      <div className="p-5">
+        {/* Header */}
+        <div className="flex items-start gap-3 mb-4">
           <img
             src={mentor.avatar}
             alt={mentor.name}
-            className="w-16 h-16 rounded-full object-cover border-2 border-growth-purple-light"
+            className="w-14 h-14 rounded-full object-cover border-2 border-purple-100 flex-shrink-0"
           />
-          <div className="flex-1">
-            <h3 className="font-bold text-lg text-text-primary">{mentor.name}</h3>
-            <p className="text-text-secondary text-sm">{mentor.title}</p>
-            <p className="text-growth-purple text-sm font-medium">{mentor.company}</p>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-bold text-base text-gray-900 truncate">{mentor.name}</h3>
+            <p className="text-gray-600 text-sm truncate">{mentor.title}</p>
+            <p className="text-purple-600 text-sm font-medium truncate">{mentor.company}</p>
           </div>
         </div>
 
+        {/* Past companies */}
         {mentor.pastCompanies && mentor.pastCompanies.length > 0 && (
-          <p className="text-xs text-text-muted mb-3">
+          <p className="text-xs text-gray-400 mb-3 truncate">
             Previously at {mentor.pastCompanies.join(', ')}
           </p>
         )}
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {mentor.expertise.slice(0, 3).map((skill) => (
-            <Badge key={skill} color="purple" size="sm">
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {mentor.expertise.slice(0, 2).map((skill) => (
+            <span key={skill} className="px-2 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">
               {skill}
-            </Badge>
+            </span>
           ))}
-          {mentor.expertise.length > 3 && (
-            <Badge color="gray" size="sm">
-              +{mentor.expertise.length - 3}
-            </Badge>
+          {mentor.expertise.length > 2 && (
+            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
+              +{mentor.expertise.length - 2}
+            </span>
           )}
         </div>
 
-        <p className="text-sm text-text-secondary mb-4 line-clamp-2">
+        {/* Bio */}
+        <p className="text-sm text-gray-500 mb-4 line-clamp-2 leading-relaxed">
           {mentor.bio}
         </p>
 
+        {/* Stats */}
         <div className="flex items-center justify-between mb-4 text-sm">
-          <div className="flex items-center gap-1 text-energy-amber">
+          <div className="flex items-center gap-1 text-amber-500">
             <Star className="w-4 h-4 fill-current" />
-            <span className="font-semibold">{mentor.rating}</span>
-            <span className="text-text-muted">({mentor.reviews})</span>
+            <span className="font-semibold text-gray-900">{mentor.rating}</span>
+            <span className="text-gray-400">({mentor.reviews})</span>
           </div>
-          <div className="flex items-center gap-1 text-text-muted">
+          <div className="flex items-center gap-1 text-gray-400">
             <MessageCircle className="w-4 h-4" />
-            <span>{mentor.sessionsCompleted} sessions</span>
+            <span>{mentor.sessionsCompleted}</span>
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-border-light">
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
           <div>
-            <p className="text-xs text-text-muted">Per session</p>
-            <p className="font-bold text-growth-purple">{formatPrice(mentor.price)}</p>
+            <p className="text-xs text-gray-400">Per session</p>
+            <p className="font-bold text-purple-600">{formatPrice(mentor.price)}</p>
           </div>
           <Link to={`/mentors/${mentor.id}`}>
             <Button size="sm">View Profile</Button>
