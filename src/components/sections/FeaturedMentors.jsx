@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { MentorCard, Button } from '../ui';
@@ -11,7 +10,7 @@ export default function FeaturedMentors() {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = 340;
+      const scrollAmount = 320;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -20,33 +19,69 @@ export default function FeaturedMentors() {
   };
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section style={{ padding: '80px 0', background: 'white' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+        <div style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          marginBottom: '40px',
+          flexWrap: 'wrap',
+          gap: '20px'
+        }}>
           <div>
-            <span className="inline-block px-4 py-1.5 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full mb-4">
+            <span style={{
+              display: 'inline-block',
+              padding: '8px 16px',
+              background: '#EDE9FE',
+              color: '#7C3AED',
+              fontSize: '14px',
+              fontWeight: '600',
+              borderRadius: '9999px',
+              marginBottom: '16px'
+            }}>
               Expert Mentors
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#111827', marginBottom: '12px' }}>
               Featured Mentors
             </h2>
-            <p className="text-lg text-gray-600 max-w-xl">
+            <p style={{ fontSize: '18px', color: '#6B7280', maxWidth: '500px' }}>
               Learn from practitioners who've been there and done that
             </p>
           </div>
-          <div className="flex gap-2 mt-6 md:mt-0">
+          <div style={{ display: 'flex', gap: '8px' }}>
             <button
               onClick={() => scroll('left')}
-              className="w-10 h-10 bg-gray-100 hover:bg-purple-100 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                width: '40px',
+                height: '40px',
+                background: '#F3F4F6',
+                border: 'none',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
             >
-              <ChevronLeft className="w-5 h-5 text-gray-700" />
+              <ChevronLeft style={{ width: '20px', height: '20px', color: '#374151' }} />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="w-10 h-10 bg-gray-100 hover:bg-purple-100 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                width: '40px',
+                height: '40px',
+                background: '#F3F4F6',
+                border: 'none',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
             >
-              <ChevronRight className="w-5 h-5 text-gray-700" />
+              <ChevronRight style={{ width: '20px', height: '20px', color: '#374151' }} />
             </button>
           </div>
         </div>
@@ -54,17 +89,23 @@ export default function FeaturedMentors() {
         {/* Carousel */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-4 -mx-4 px-4 scroll-smooth"
           style={{
-            scrollbarWidth: 'none',
+            display: 'flex',
+            gap: '24px',
+            overflowX: 'auto',
+            paddingBottom: '16px',
+            scrollBehavior: 'smooth',
             msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch'
+            scrollbarWidth: 'none'
           }}
         >
           {featuredMentors.map((mentor) => (
             <div
               key={mentor.id}
-              className="flex-none w-[300px]"
+              style={{
+                flexShrink: 0,
+                width: '300px'
+              }}
             >
               <MentorCard mentor={mentor} featured />
             </div>
@@ -72,7 +113,7 @@ export default function FeaturedMentors() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div style={{ textAlign: 'center', marginTop: '48px' }}>
           <Link to="/mentors">
             <Button variant="secondary" icon={ArrowRight} iconPosition="right">
               Browse All Mentors

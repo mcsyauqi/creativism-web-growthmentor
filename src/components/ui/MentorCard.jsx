@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Star, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
@@ -14,87 +13,170 @@ export default function MentorCard({ mentor, featured = false }) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`
-        bg-white rounded-2xl overflow-hidden shadow-sm border h-full
-        ${featured ? 'border-purple-300 ring-1 ring-purple-200' : 'border-gray-100'}
-        hover:shadow-lg transition-shadow duration-300
-      `}
-    >
+    <div style={{
+      background: 'white',
+      borderRadius: '16px',
+      overflow: 'hidden',
+      border: featured ? '2px solid #8B5CF6' : '1px solid #E5E7EB',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
       {featured && (
-        <div className="bg-purple-600 text-white text-center py-2 text-sm font-medium">
+        <div style={{
+          background: '#8B5CF6',
+          color: 'white',
+          textAlign: 'center',
+          padding: '8px',
+          fontSize: '14px',
+          fontWeight: '600'
+        }}>
           Featured Mentor
         </div>
       )}
 
-      <div className="p-5">
+      <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <div className="flex items-start gap-3 mb-4">
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '12px' }}>
           <img
             src={mentor.avatar}
             alt={mentor.name}
-            className="w-14 h-14 rounded-full object-cover border-2 border-purple-100 flex-shrink-0"
+            style={{
+              width: '56px',
+              height: '56px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2px solid #EDE9FE'
+            }}
           />
-          <div className="min-w-0 flex-1">
-            <h3 className="font-bold text-base text-gray-900 truncate">{mentor.name}</h3>
-            <p className="text-gray-600 text-sm truncate">{mentor.title}</p>
-            <p className="text-purple-600 text-sm font-medium truncate">{mentor.company}</p>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <h3 style={{
+              fontSize: '16px',
+              fontWeight: '700',
+              color: '#111827',
+              marginBottom: '2px',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+              {mentor.name}
+            </h3>
+            <p style={{
+              fontSize: '14px',
+              color: '#6B7280',
+              marginBottom: '2px',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+              {mentor.title}
+            </p>
+            <p style={{
+              fontSize: '14px',
+              color: '#8B5CF6',
+              fontWeight: '500',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+              {mentor.company}
+            </p>
           </div>
         </div>
 
         {/* Past companies */}
         {mentor.pastCompanies && mentor.pastCompanies.length > 0 && (
-          <p className="text-xs text-gray-400 mb-3 truncate">
+          <p style={{
+            fontSize: '12px',
+            color: '#9CA3AF',
+            marginBottom: '12px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}>
             Previously at {mentor.pastCompanies.join(', ')}
           </p>
         )}
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
           {mentor.expertise.slice(0, 2).map((skill) => (
-            <span key={skill} className="px-2 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">
+            <span key={skill} style={{
+              padding: '4px 10px',
+              background: '#EDE9FE',
+              color: '#7C3AED',
+              fontSize: '12px',
+              fontWeight: '500',
+              borderRadius: '9999px'
+            }}>
               {skill}
             </span>
           ))}
           {mentor.expertise.length > 2 && (
-            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
+            <span style={{
+              padding: '4px 10px',
+              background: '#F3F4F6',
+              color: '#6B7280',
+              fontSize: '12px',
+              fontWeight: '500',
+              borderRadius: '9999px'
+            }}>
               +{mentor.expertise.length - 2}
             </span>
           )}
         </div>
 
         {/* Bio */}
-        <p className="text-sm text-gray-500 mb-4 line-clamp-2 leading-relaxed">
+        <p style={{
+          fontSize: '14px',
+          color: '#6B7280',
+          marginBottom: '16px',
+          lineHeight: '1.5',
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          flex: 1
+        }}>
           {mentor.bio}
         </p>
 
         {/* Stats */}
-        <div className="flex items-center justify-between mb-4 text-sm">
-          <div className="flex items-center gap-1 text-amber-500">
-            <Star className="w-4 h-4 fill-current" />
-            <span className="font-semibold text-gray-900">{mentor.rating}</span>
-            <span className="text-gray-400">({mentor.reviews})</span>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '16px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <Star style={{ width: '16px', height: '16px', color: '#F59E0B', fill: '#F59E0B' }} />
+            <span style={{ fontWeight: '600', color: '#111827', fontSize: '14px' }}>{mentor.rating}</span>
+            <span style={{ color: '#9CA3AF', fontSize: '14px' }}>({mentor.reviews})</span>
           </div>
-          <div className="flex items-center gap-1 text-gray-400">
-            <MessageCircle className="w-4 h-4" />
-            <span>{mentor.sessionsCompleted}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#9CA3AF' }}>
+            <MessageCircle style={{ width: '16px', height: '16px' }} />
+            <span style={{ fontSize: '14px' }}>{mentor.sessionsCompleted}</span>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingTop: '16px',
+          borderTop: '1px solid #E5E7EB'
+        }}>
           <div>
-            <p className="text-xs text-gray-400">Per session</p>
-            <p className="font-bold text-purple-600">{formatPrice(mentor.price)}</p>
+            <p style={{ fontSize: '12px', color: '#9CA3AF' }}>Per session</p>
+            <p style={{ fontWeight: '700', color: '#8B5CF6', fontSize: '16px' }}>{formatPrice(mentor.price)}</p>
           </div>
           <Link to={`/mentors/${mentor.id}`}>
             <Button size="sm">View Profile</Button>
           </Link>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

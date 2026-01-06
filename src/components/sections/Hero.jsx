@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Star, Award } from 'lucide-react';
 import Button from '../ui/Button';
@@ -14,31 +13,50 @@ export default function Hero() {
   const featuredAvatars = mentors.slice(0, 6);
 
   return (
-    <section className="relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #F5F3FF 0%, #FAFAFA 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section style={{ background: 'linear-gradient(180deg, #F5F3FF 0%, #FAFAFA 100%)', padding: '80px 0' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
           {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full mb-6">
-              <Star className="w-4 h-4 fill-current" />
+          <div>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              background: '#EDE9FE',
+              color: '#7C3AED',
+              fontSize: '14px',
+              fontWeight: '600',
+              borderRadius: '9999px',
+              marginBottom: '24px'
+            }}>
+              <Star style={{ width: '16px', height: '16px', fill: 'currentColor' }} />
               #1 Marketing Mentoring Platform
-            </span>
+            </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 style={{
+              fontSize: '56px',
+              fontWeight: '700',
+              color: '#111827',
+              marginBottom: '24px',
+              lineHeight: '1.1'
+            }}>
               Accelerate Your{' '}
-              <span className="text-purple-600">Marketing Career</span>{' '}
-              <span>🚀</span>
+              <span style={{ color: '#8B5CF6' }}>Marketing Career</span>{' '}
+              🚀
             </h1>
 
-            <p className="text-lg text-gray-600 mb-8 max-w-xl leading-relaxed">
+            <p style={{
+              fontSize: '18px',
+              color: '#6B7280',
+              marginBottom: '32px',
+              lineHeight: '1.7',
+              maxWidth: '500px'
+            }}>
               1-on-1 mentoring dengan digital marketing experts. Get personalized guidance untuk level up skills, solve challenges, atau navigate career decisions.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <div style={{ display: 'flex', gap: '16px', marginBottom: '48px' }}>
               <Link to="/mentors">
                 <Button size="lg" icon={ArrowRight} iconPosition="right">
                   Find Your Mentor
@@ -52,81 +70,102 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-6 lg:gap-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                    <stat.icon className="w-6 h-6 text-purple-600" />
+            <div style={{ display: 'flex', gap: '32px' }}>
+              {stats.map((stat) => (
+                <div key={stat.label} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    background: '#EDE9FE',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <stat.icon style={{ width: '24px', height: '24px', color: '#8B5CF6' }} />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                    <p className="text-sm text-gray-500">{stat.label}</p>
+                    <p style={{ fontSize: '24px', fontWeight: '700', color: '#111827' }}>{stat.value}</p>
+                    <p style={{ fontSize: '14px', color: '#9CA3AF' }}>{stat.label}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Content - Avatar Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:block"
-          >
-            <div className="grid grid-cols-3 gap-4">
+          <div>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '16px'
+            }}>
               {featuredAvatars.map((mentor, index) => (
-                <motion.div
+                <div
                   key={mentor.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="relative rounded-2xl overflow-hidden shadow-lg aspect-square"
-                  style={{ marginTop: index % 2 === 1 ? '20px' : '0' }}
+                  style={{
+                    position: 'relative',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    aspectRatio: '1',
+                    marginTop: index % 2 === 1 ? '24px' : '0'
+                  }}
                 >
                   <img
                     src={mentor.avatar}
                     alt={mentor.name}
-                    className="w-full h-full object-cover"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <p className="text-white font-semibold text-sm truncate">{mentor.name}</p>
-                    <p className="text-white/80 text-xs truncate">{mentor.expertise[0]}</p>
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: '12px',
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
+                  }}>
+                    <p style={{ color: 'white', fontWeight: '600', fontSize: '14px' }}>{mentor.name}</p>
+                    <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '12px' }}>{mentor.expertise[0]}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Floating stats card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-6 bg-white rounded-xl shadow-lg p-4 inline-flex items-center gap-3"
-            >
-              <div className="flex -space-x-2">
-                {featuredAvatars.slice(0, 3).map((mentor) => (
+            <div style={{
+              marginTop: '24px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              background: 'white',
+              borderRadius: '12px',
+              padding: '12px 16px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+            }}>
+              <div style={{ display: 'flex' }}>
+                {featuredAvatars.slice(0, 3).map((mentor, i) => (
                   <img
                     key={mentor.id}
                     src={mentor.avatar}
                     alt=""
-                    className="w-8 h-8 rounded-full border-2 border-white object-cover"
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      border: '2px solid white',
+                      marginLeft: i > 0 ? '-8px' : '0',
+                      objectFit: 'cover'
+                    }}
                   />
                 ))}
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-900">5,000+ Sessions</p>
-                <p className="text-xs text-gray-500">Completed</p>
+                <p style={{ fontSize: '14px', fontWeight: '600', color: '#111827' }}>5,000+ Sessions</p>
+                <p style={{ fontSize: '12px', color: '#9CA3AF' }}>Completed</p>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

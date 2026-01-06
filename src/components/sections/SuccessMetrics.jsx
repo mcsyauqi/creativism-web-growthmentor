@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { TrendingUp, DollarSign, ThumbsUp, Star } from 'lucide-react';
 
 const metrics = [
@@ -26,43 +25,88 @@ const metrics = [
 
 export default function SuccessMetrics() {
   return (
-    <section className="py-20" style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section style={{
+      padding: '80px 0',
+      background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)'
+    }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-1.5 bg-white/20 text-white text-sm font-semibold rounded-full mb-4">
+        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <span style={{
+            display: 'inline-block',
+            padding: '8px 16px',
+            background: 'rgba(255,255,255,0.2)',
+            color: 'white',
+            fontSize: '14px',
+            fontWeight: '600',
+            borderRadius: '9999px',
+            marginBottom: '16px'
+          }}>
             Proven Results
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 style={{
+            fontSize: '40px',
+            fontWeight: '700',
+            color: 'white',
+            marginBottom: '16px'
+          }}>
             Real Results from Real Marketers
           </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+          <p style={{
+            fontSize: '18px',
+            color: 'rgba(255,255,255,0.8)',
+            maxWidth: '600px',
+            margin: '0 auto'
+          }}>
             Our mentees achieve measurable success in their marketing careers
           </p>
-        </motion.div>
+        </div>
 
         {/* Stats Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {metrics.map((metric, index) => (
-            <motion.div
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '24px'
+        }}>
+          {metrics.map((metric) => (
+            <div
               key={metric.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20"
+              style={{
+                background: 'rgba(255,255,255,0.1)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '16px',
+                padding: '24px',
+                textAlign: 'center',
+                border: '1px solid rgba(255,255,255,0.2)'
+              }}
             >
-              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <metric.icon className="w-7 h-7 text-white" />
+              <div style={{
+                width: '56px',
+                height: '56px',
+                background: 'rgba(255,255,255,0.2)',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 16px'
+              }}>
+                <metric.icon style={{ width: '28px', height: '28px', color: 'white' }} />
               </div>
-              <p className="text-4xl font-bold text-white mb-2">{metric.value}</p>
-              <p className="text-white/80 text-sm">{metric.label}</p>
-            </motion.div>
+              <p style={{
+                fontSize: '36px',
+                fontWeight: '700',
+                color: 'white',
+                marginBottom: '8px'
+              }}>
+                {metric.value}
+              </p>
+              <p style={{
+                color: 'rgba(255,255,255,0.8)',
+                fontSize: '14px'
+              }}>
+                {metric.label}
+              </p>
+            </div>
           ))}
         </div>
       </div>

@@ -50,32 +50,55 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-text-primary text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer style={{ background: '#111827', color: 'white' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         {/* Main Footer */}
-        <div className="py-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div style={{
+          padding: '64px 0',
+          display: 'grid',
+          gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr',
+          gap: '32px'
+        }}>
           {/* Brand */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-growth-purple rounded-xl flex items-center justify-center">
-                <Rocket className="w-6 h-6 text-white" />
+          <div>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', textDecoration: 'none' }}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                background: '#8B5CF6',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Rocket style={{ width: '24px', height: '24px', color: 'white' }} />
               </div>
-              <span className="text-xl font-bold">
-                Growth<span className="text-growth-purple-light">Mentor</span>
+              <span style={{ fontSize: '20px', fontWeight: '700', color: 'white' }}>
+                Growth<span style={{ color: '#A78BFA' }}>Mentor</span>
               </span>
             </Link>
-            <p className="text-gray-400 text-sm mb-6">
+            <p style={{ color: '#9CA3AF', fontSize: '14px', marginBottom: '24px', lineHeight: '1.6' }}>
               Accelerate your marketing career with 1-on-1 mentoring from industry experts.
             </p>
-            <div className="flex gap-4">
+            <div style={{ display: 'flex', gap: '12px' }}>
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.url}
                   aria-label={social.label}
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-growth-purple transition-colors duration-200"
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    background: 'rgba(255,255,255,0.1)',
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    transition: 'background 0.2s'
+                  }}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon style={{ width: '20px', height: '20px' }} />
                 </a>
               ))}
             </div>
@@ -84,13 +107,18 @@ export default function Footer() {
           {/* Links */}
           {Object.values(footerLinks).map((section) => (
             <div key={section.title}>
-              <h4 className="font-semibold mb-4">{section.title}</h4>
-              <ul className="space-y-2">
+              <h4 style={{ fontWeight: '600', marginBottom: '16px', fontSize: '14px' }}>{section.title}</h4>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {section.links.map((link) => (
-                  <li key={link.name}>
+                  <li key={link.name} style={{ marginBottom: '8px' }}>
                     <Link
                       to={link.path}
-                      className="text-gray-400 text-sm hover:text-growth-purple-light transition-colors duration-200"
+                      style={{
+                        color: '#9CA3AF',
+                        fontSize: '14px',
+                        textDecoration: 'none',
+                        transition: 'color 0.2s'
+                      }}
                     >
                       {link.name}
                     </Link>
@@ -102,31 +130,52 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">
+        <div style={{
+          padding: '24px 0',
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '16px'
+        }}>
+          <p style={{ color: '#9CA3AF', fontSize: '14px' }}>
             © {new Date().getFullYear()} GrowthMentor. Created by{' '}
             <a
               href="https://creativism.id"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-growth-purple-light hover:text-growth-purple transition-colors"
+              style={{ color: '#A78BFA', textDecoration: 'none' }}
             >
               Creativism
             </a>
           </p>
-          <div className="flex gap-6 text-sm text-gray-400">
-            <Link to="/privacy" className="hover:text-white transition-colors">
+          <div style={{ display: 'flex', gap: '24px', fontSize: '14px' }}>
+            <Link to="/privacy" style={{ color: '#9CA3AF', textDecoration: 'none' }}>
               Privacy
             </Link>
-            <Link to="/terms" className="hover:text-white transition-colors">
+            <Link to="/terms" style={{ color: '#9CA3AF', textDecoration: 'none' }}>
               Terms
             </Link>
-            <Link to="/cookies" className="hover:text-white transition-colors">
+            <Link to="/cookies" style={{ color: '#9CA3AF', textDecoration: 'none' }}>
               Cookies
             </Link>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          footer > div > div:first-child {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 640px) {
+          footer > div > div:first-child {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Users, LayoutDashboard, LineChart, UserCheck, ArrowRight } from 'lucide-react';
 import { Button } from '../ui';
@@ -26,45 +25,95 @@ const features = [
   },
 ];
 
+const skills = [
+  { name: 'Performance Marketing', progress: 85 },
+  { name: 'SEO & Content', progress: 70 },
+  { name: 'Analytics', progress: 60 },
+];
+
+const stats = [
+  { value: '12', label: 'Team Members' },
+  { value: '45', label: 'Sessions' },
+  { value: '4.9', label: 'Avg Rating' },
+];
+
 export default function ForCompanies() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section style={{ padding: '80px 0', background: 'white' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '60px',
+          alignItems: 'center'
+        }}>
           {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="inline-block px-4 py-1.5 bg-green-100 text-green-700 text-sm font-semibold rounded-full mb-4">
+          <div>
+            <span style={{
+              display: 'inline-block',
+              padding: '8px 16px',
+              background: '#D1FAE5',
+              color: '#10B981',
+              fontSize: '14px',
+              fontWeight: '600',
+              borderRadius: '9999px',
+              marginBottom: '16px'
+            }}>
               For Teams
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 style={{
+              fontSize: '40px',
+              fontWeight: '700',
+              color: '#111827',
+              marginBottom: '16px'
+            }}>
               GrowthMentor for Teams
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p style={{
+              fontSize: '18px',
+              color: '#6B7280',
+              marginBottom: '32px',
+              lineHeight: '1.6'
+            }}>
               Invest in your marketing team's growth. Give them access to world-class mentors and watch them transform.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {features.map((feature, index) => (
-                <motion.div
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '16px',
+              marginBottom: '32px'
+            }}>
+              {features.map((feature) => (
+                <div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-3"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '12px'
+                  }}
                 >
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-5 h-5 text-green-600" />
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    background: '#D1FAE5',
+                    borderRadius: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <feature.icon style={{ width: '20px', height: '20px', color: '#10B981' }} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">{feature.title}</h4>
-                    <p className="text-sm text-gray-500">{feature.description}</p>
+                    <h4 style={{ fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
+                      {feature.title}
+                    </h4>
+                    <p style={{ fontSize: '14px', color: '#6B7280' }}>
+                      {feature.description}
+                    </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -73,61 +122,77 @@ export default function ForCompanies() {
                 Learn More
               </Button>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Visual */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-green-50 rounded-3xl p-8">
-              {/* Team dashboard mockup */}
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h4 className="font-semibold text-gray-900">Team Progress</h4>
-                  <span className="text-sm text-green-600 font-medium">This Month</span>
-                </div>
+          <div style={{
+            background: '#ECFDF5',
+            borderRadius: '24px',
+            padding: '32px'
+          }}>
+            {/* Team dashboard mockup */}
+            <div style={{
+              background: 'white',
+              borderRadius: '16px',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
+              padding: '24px'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '24px'
+              }}>
+                <h4 style={{ fontWeight: '600', color: '#111827' }}>Team Progress</h4>
+                <span style={{ fontSize: '14px', color: '#10B981', fontWeight: '500' }}>This Month</span>
+              </div>
 
-                {/* Progress bars */}
-                {[
-                  { name: 'Performance Marketing', progress: 85 },
-                  { name: 'SEO & Content', progress: 70 },
-                  { name: 'Analytics', progress: 60 },
-                ].map((skill) => (
-                  <div key={skill.name} className="mb-4">
-                    <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-600">{skill.name}</span>
-                      <span className="text-gray-900 font-medium">{skill.progress}%</span>
-                    </div>
-                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.progress}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="h-full bg-green-500 rounded-full"
-                      />
-                    </div>
+              {/* Progress bars */}
+              {skills.map((skill) => (
+                <div key={skill.name} style={{ marginBottom: '16px' }}>
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    fontSize: '14px',
+                    marginBottom: '4px'
+                  }}>
+                    <span style={{ color: '#6B7280' }}>{skill.name}</span>
+                    <span style={{ color: '#111827', fontWeight: '500' }}>{skill.progress}%</span>
+                  </div>
+                  <div style={{
+                    height: '8px',
+                    background: '#F3F4F6',
+                    borderRadius: '9999px',
+                    overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      height: '100%',
+                      width: `${skill.progress}%`,
+                      background: '#10B981',
+                      borderRadius: '9999px'
+                    }} />
+                  </div>
+                </div>
+              ))}
+
+              {/* Stats */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '16px',
+                marginTop: '24px',
+                paddingTop: '24px',
+                borderTop: '1px solid #E5E7EB'
+              }}>
+                {stats.map((stat) => (
+                  <div key={stat.label} style={{ textAlign: 'center' }}>
+                    <p style={{ fontSize: '24px', fontWeight: '700', color: '#111827' }}>{stat.value}</p>
+                    <p style={{ fontSize: '12px', color: '#6B7280' }}>{stat.label}</p>
                   </div>
                 ))}
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
-                  {[
-                    { value: '12', label: 'Team Members' },
-                    { value: '45', label: 'Sessions' },
-                    { value: '4.9', label: 'Avg Rating' },
-                  ].map((stat) => (
-                    <div key={stat.label} className="text-center">
-                      <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                      <p className="text-xs text-gray-500">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
